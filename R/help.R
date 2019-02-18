@@ -42,7 +42,6 @@ create_html_help <- function(spec_path, package = NULL) {
   h <- c(h, paste0("</table>"))
   h <- c(h, paste0("</body>"))
 
-
   rd <- c(h)
   as.character(rd)
 }

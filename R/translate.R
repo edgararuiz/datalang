@@ -55,8 +55,16 @@ translate_data <- function(spec_path, .data = NULL) {
       cl
     }
   )
+
   dfl <- as.data.frame(dfl)
+
+  colnames(dfl) <- sapply(
+    seq_along(vars),
+    function(x) { vars[[x]]$trans }
+  )
+
   if (was_tibble) dfl <- as_tibble(dfl)
+
   dfl
 }
 
@@ -87,7 +95,8 @@ save_translation <- function(spec_path, data_folder = "data") {
   assign(df_name, df)
   save(
     list = df_name,
-    file = paste0(data_folder, "/", df_name, ".rda")
+    file = paste0(data_folder, "/", df_name, ".rda"),
+    compress = "xz"
   )
 }
 
